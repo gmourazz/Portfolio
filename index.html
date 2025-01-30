@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio - Geovanna Moura</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Canela&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="WhatsApp Image 2025-01-26 at 17.52.59 (1).jpeg" alt="Logo Geovanna Moura" class="logo">
+      <div>
+        <h1>Geovanna Moura</h1>
+        <p>Desenvolvedora Front-End</p>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#sobre">Sobre Mim</a></li>
+        <li><a href="#tecnologias">Tecnologias</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="sobre">
+    <h2>Sobre Mim</h2>
+    <p>Sou desenvolvedora front-end apaixonada por criar interfaces responsivas e experiências digitais interativas. Com experiência em HTML, CSS, JavaScript, e frameworks modernos como React, estou sempre buscando melhorar minhas habilidades e aprender novas tecnologias. Atualmente, curso Engenharia de Software na Anhanguera, o que me permite aprofundar meus conhecimentos em áreas como análise de sistemas e desenvolvimento de soluções de software.</p>
+  </section>
+
+  <section id="tecnologias">
+    <h2>Experiência nas Tecnologias</h2>
+    <ul>
+      <li><strong>JavaScript:</strong> ★★★★☆</li>
+      <li><strong>HTML:</strong> ★★★★☆</li>
+      <li><strong>CSS:</strong> ★★★★☆</li>
+      <li><strong>C#:</strong> ★★★★★</li>
+      <li><strong>Python:</strong> ★★★☆☆</li>
+      <li><strong>React:</strong> ★★★☆☆</li>
+    </ul>
+  </section>
+
+  <section id="projetos">
+    <h2>Meus Projetos</h2>
+    <button id="openModalBtn">Ver Projetos</button>
+
+    <!-- Modal -->
+    <div id="projectModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-body">
+          <div class="projeto-card">
+            <h3>Quiz Interativo para Programadores</h3>
+            <p><strong>Resumo:</strong> Um quiz interativo para programadores...</p>
+            <a href="https://github.com/gmourazz/Projetos" target="_blank" class="link">Ver Projeto</a>
+          </div>
+          <div class="projeto-card">
+            <h3>Machine Learning com Python</h3>
+            <p><strong>Resumo:</strong> Projeto de análise de dados com Python...</p>
+            <a href="https://github.com/gmourazz/Atividades" target="_blank" class="link">Ver Projeto</a>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="prev" onclick="changeProject(-1)">&#10094; Anterior</button>
+          <button class="next" onclick="changeProject(1)">Próximo &#10095;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <h2>Contato</h2>
+    <p><strong>E-mail:</strong> geovannamouragr@outlook.com</p>
+    <p><strong>Telefone:</strong> (34) 99986-5512</p>
+    <ul>
+      <li><a href="https://www.linkedin.com/in/geovanna-moura-23472b216/" target="_blank" class="link">LinkedIn</a></li>
+      <li><a href="https://github.com/gmourazz" target="_blank" class="link">GitHub</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Geovanna Moura</p>
+  </footer>
+
+  <script>
+    let currentProjectIndex = 0;
+    const projects = document.querySelectorAll('.modal-body .projeto-card');
+    const modal = document.getElementById('projectModal');
+    const closeModal = document.querySelector('.close');
+
+    document.getElementById('openModalBtn').onclick = function () {
+      modal.style.display = "block";
+      showProject(currentProjectIndex);
+    };
+
+    closeModal.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    function showProject(index) {
+      projects.forEach((project) => (project.style.display = "none"));
+      projects[index].style.display = "block";
+    }
+
+    function changeProject(direction) {
+      currentProjectIndex = (currentProjectIndex + direction + projects.length) % projects.length;
+      showProject(currentProjectIndex);
+    }
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+</body>
+</html>
