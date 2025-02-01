@@ -6,6 +6,7 @@
   <title>Portfólio - Geovanna Moura</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Canela&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <header>
@@ -33,52 +34,82 @@
 
   <section id="tecnologias">
     <h2>Experiência nas Tecnologias</h2>
-    <ul>
-      <li><strong>JavaScript:</strong> ★★★★☆</li>
-      <li><strong>HTML:</strong> ★★★★☆</li>
-      <li><strong>CSS:</strong> ★★★★☆</li>
-      <li><strong>C#:</strong> ★★★★★</li>
-      <li><strong>Python:</strong> ★★★☆☆</li>
-      <li><strong>React:</strong> ★★★☆☆</li>
+    <ul class="tecnologias-lista">
+      <li>
+        <span class="icon"><i class="fab fa-js-square"></i></span>
+        <strong>JavaScript:</strong> ★★★★☆
+      </li>
+      <li>
+        <span class="icon"><i class="fab fa-html5"></i></span>
+        <strong>HTML:</strong> ★★★★☆
+      </li>
+      <li>
+        <span class="icon"><i class="fab fa-css3-alt"></i></span>
+        <strong>CSS:</strong> ★★★★☆
+      </li>
+      <li>
+        <span class="icon"><i class="fab fa-microsoft"></i></span>
+        <strong>C#:</strong> ★★★★★
+      </li>
+      <li>
+        <span class="icon"><i class="fab fa-python"></i></span>
+        <strong>Python:</strong> ★★★☆☆
+      </li>
+      <li>
+        <span class="icon"><i class="fab fa-react"></i></span>
+        <strong>React:</strong> ★★★☆☆
+      </li>
     </ul>
   </section>
 
   <section id="projetos">
     <h2>Meus Projetos</h2>
-    <button id="openModalBtn">Ver Projetos</button>
-
-    <!-- Modal -->
-    <div id="projectModal" class="modal" style="display: none;">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="modal-body">
-          <div class="projeto-card">
-            <h3>Quiz Interativo para Programadores</h3>
-            <p><strong>Resumo:</strong> Um quiz interativo para programadores...</p>
-            <a href="https://github.com/gmourazz/Projetos" target="_blank" class="link">Ver Projeto</a>
-          </div>
-          <div class="projeto-card">
-            <h3>Machine Learning com Python</h3>
-            <p><strong>Resumo:</strong> Projeto de análise de dados com Python...</p>
-            <a href="https://github.com/gmourazz/Atividades" target="_blank" class="link">Ver Projeto</a>
-          </div>
+    <div class="carrossel-container">
+        <div class="carrossel">
+            <div class="projeto-card">
+                <div class="projeto-info">
+                    <h3>Quiz Interativo para Programadores</h3>
+                    <p>Um quiz interativo para testar conhecimentos em programação.</p>
+                    <a href="https://github.com/gmourazz/Projetos" target="_blank" class="link">Ver Projeto</a>
+                </div>
+            </div>
+            <div class="projeto-card">
+                <div class="projeto-info">
+                    <h3>Machine Learning com Python</h3>
+                    <p>Projeto de análise de dados utilizando Python e bibliotecas de ML.</p>
+                    <a href="https://github.com/gmourazz/Atividades" target="_blank" class="link">Ver Projeto</a>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button class="prev" onclick="changeProject(-1)">&#10094; Anterior</button>
-          <button class="next" onclick="changeProject(1)">Próximo &#10095;</button>
+        <button class="carrossel-btn prev" onclick="moverCarrossel(-1)">&#10094;</button>
+        <button class="carrossel-btn next" onclick="moverCarrossel(1)">&#10095;</button>
+        <div class="indicadores">
+            <span class="indicador ativo" data-index="0"></span>
+            <span class="indicador" data-index="1"></span>
+            <span class="indicador" data-index="2"></span>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
   <section id="contato">
     <h2>Contato</h2>
-    <p><strong>E-mail:</strong> geovannamouragr@outlook.com</p>
-    <p><strong>Telefone:</strong> (34) 99986-5512</p>
-    <ul>
-      <li><a href="https://www.linkedin.com/in/geovanna-moura-23472b216/" target="_blank" class="link">LinkedIn</a></li>
-      <li><a href="https://github.com/gmourazz" target="_blank" class="link">GitHub</a></li>
-    </ul>
+    <div class="contato-container">
+      <div class="contato-item">
+        <span class="icon"><i class="fas fa-envelope"></i></span>
+        <p><strong>E-mail:</strong> geovannamouragr@outlook.com</p>
+      </div>
+      <div class="contato-item">
+        <span class="icon"><i class="fas fa-phone"></i></span>
+        <p><strong>Telefone:</strong> (34) 99986-5512</p>
+      </div>
+      <div class="contato-item">
+        <span class="icon"><i class="fas fa-link"></i></span>
+        <p>
+          <strong>Redes Sociais:</strong>
+          <a href="https://www.linkedin.com/in/geovanna-moura-23472b216/" target="_blank" class="link">LinkedIn</a> |
+          <a href="https://github.com/gmourazz" target="_blank" class="link">GitHub</a>
+        </p>
+    </div>
   </section>
 
   <footer>
@@ -86,35 +117,28 @@
   </footer>
 
   <script>
-    let currentProjectIndex = 0;
-    const projects = document.querySelectorAll('.modal-body .projeto-card');
-    const modal = document.getElementById('projectModal');
-    const closeModal = document.querySelector('.close');
+    let currentIndex = 0;
+    const carrossel = document.querySelector('.carrossel');
+    const projetos = document.querySelectorAll('.projeto-card');
+    const indicadores = document.querySelectorAll('.indicador');
 
-    document.getElementById('openModalBtn').onclick = function () {
-      modal.style.display = "block";
-      showProject(currentProjectIndex);
-    };
-
-    closeModal.onclick = function () {
-      modal.style.display = "none";
-    };
-
-    function showProject(index) {
-      projects.forEach((project) => (project.style.display = "none"));
-      projects[index].style.display = "block";
+    function moverCarrossel(direction) {
+      const totalProjetos = projetos.length;
+      currentIndex = (currentIndex + direction + totalProjetos) % totalProjetos;
+      const offset = -currentIndex * 100;
+      carrossel.style.transform = `translateX(${offset}%)`;
+      atualizarIndicadores();
     }
-
-    function changeProject(direction) {
-      currentProjectIndex = (currentProjectIndex + direction + projects.length) % projects.length;
-      showProject(currentProjectIndex);
+    function atualizarIndicadores() {
+      indicadores.forEach((indicador, index) => {
+        if (index === currentIndex) {
+          indicador.classList.add('ativo');
+        } else {
+          indicador.classList.remove('ativo');
+        }
+      });
     }
-
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    };
+    atualizarIndicadores();
   </script>
 </body>
 </html>
